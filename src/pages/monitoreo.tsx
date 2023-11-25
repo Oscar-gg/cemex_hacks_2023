@@ -9,9 +9,10 @@ import { Modal } from "~/components/modal/modal";
 
 const Monitoreo = () => {
 
-    const Data = [
-        { id: "1", status: "Ocupado", luces: "encendido", temperatura: "81", time: "eoieo", num: 1 }
-    ]
+    const offices = api.office.getOffices.useQuery().data;
+    // const Data = [
+    //     { id: "1", status: "Ocupado", luces: "encendido", temperatura: "81", time: "eoieo", num: 1 }
+    // ]
 
     const admin = true;
 
@@ -21,9 +22,10 @@ const Monitoreo = () => {
     const [status, setStatus] = useState("Desocupado")
     const [num, setNum] = useState(-1)
 
-    const handleOpen = (key: number) => {
-        setId(Data[key]?.id ?? "")
-        setStatus(Data[key]?.status ?? "Desocupado")
+    const handleOpen = (key: number, officeId:string, num:number) => {
+        setId(officeId)
+        setNum(num)
+        // setStatus(Data[key]?.status ?? "Desocupado")
         setOpen(!isOpen);
     }
 
@@ -53,14 +55,14 @@ const Monitoreo = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Data ? (
-                                Data.map((log, key) => (
-                                    <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key)}>
-                                        <td>{log.id}</td>
-                                        <td>{log.status}</td>
+                            {offices ? (
+                                offices.map((office, key) => (
+                                    <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key, office.id, office.officeNum)}>
+                                        <td>{office.officeNum}</td>
+                                        {/* <td>{log.status ?? "ocupado"}</td>
                                         <td>{log.luces}</td>
                                         <td>{log.temperatura}</td>
-                                        <td>{log.time}</td>
+                                        <td>{log.time}</td> */}
                                     </tr>
 
                                 ))
@@ -94,6 +96,7 @@ export const AddOffice = () => {
         if (office != -1) {
             try {
                 addOffice.mutate({ officeNum: office })
+                toast.success("Oficina agregada")
             } catch (error) {
                 if (error instanceof TRPCError)
                     toast.error(error.message);
@@ -111,7 +114,7 @@ export const AddOffice = () => {
                 </div>
                 <input className="p-1 rounded-md outline-none focus:ring-1" onChange={(e) => {
                     setOffice(parseInt(e.target.value))
-                }}/>
+                }} />
             </div>
             <button onClick={handleAdd} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
                 Add office

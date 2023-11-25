@@ -1,10 +1,12 @@
 
 
-export const UseHorarios = (id:string) => {
+export const UseHorarios = async(id:string) => {
+    // const reserved =  api.reservation.getReservations.useQuery({officeId: id})
 
+    // console.log(reserved)
     // Example usage:
     const hours = generateHoursArray();
-    // console.log(hours)
+    console.log(hours)
     const reservations = [];
     for (const hour of hours) {
         // console.log(hour)
