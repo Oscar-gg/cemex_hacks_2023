@@ -1,6 +1,8 @@
 import { postRouter } from "~/server/api/routers/post";
 import { deviceRouter } from "./routers/device";
 import { createTRPCRouter } from "~/server/api/trpc";
+import { officeRouter } from "./routers/office";
+import { reservationRouter } from "./routers/reservation";
 import { AWSRouter } from "~/server/api/routers/aws";
 import { sensorRouter } from "~/server/api/routers/sensor";
 
@@ -11,6 +13,8 @@ import { sensorRouter } from "~/server/api/routers/sensor";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  office: officeRouter,
+  reservation: reservationRouter
   device: deviceRouter,
   aws: AWSRouter,
   sensor: sensorRouter,
