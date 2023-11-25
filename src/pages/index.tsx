@@ -11,8 +11,8 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center px-50 bg-sky-100">
-        <div className="container flex flex-col items-center justify-center px-4 py-16 h-full bg-sky-700/60 rounded-xl">
+      <main className="flex min-h-screen flex-col items-center justify-center px-50 bg-white">
+        <div className="container flex flex-col items-center justify-center px-4 py-16 h-full bg-sky-700/80 rounded-xl">
           <h1 className="text-5xl font-extrabold tracking-tight text-sky-50 sm:text-9xl">
             CEMEX
           </h1>
@@ -36,7 +36,7 @@ function AuthShowcase() {
   return (
     <div className="flex flex-col items-center justify-center gap-4">
       <button
-        className="rounded-full bg-sky-900/60 px-10 py-3 text-lg text-white font-bold no-underline transition hover:bg-sky-900/40"
+        className="rounded-full bg-sky-900/80 px-10 py-3 text-lg text-white font-bold no-underline transition hover:bg-sky-900/60"
         onClick={() => void signIn()}
       >
         Sign in
