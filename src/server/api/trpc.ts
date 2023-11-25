@@ -16,6 +16,8 @@ import { ZodError } from "zod";
 import { getServerAuthSession } from "~/server/auth";
 import { db } from "~/server/db";
 
+import { compareRole } from "~/utils/role";
+
 /**
  * 1. CONTEXT
  *
@@ -26,6 +28,16 @@ import { db } from "~/server/db";
 
 interface CreateContextOptions {
   session: Session | null;
+}
+
+interface Meta {
+  role?:
+    | "unauthenticated"
+    | "authenticated"
+    | "communityMember"
+    | "organizationMember"
+    | "admin"
+    | "system";
 }
 
 /**
@@ -70,19 +82,23 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  * errors on the backend.
  */
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
-  transformer: superjson,
-  errorFormatter({ shape, error }) {
-    return {
-      ...shape,
-      data: {
-        ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
-      },
-    };
-  },
-});
+const t = initTRPC
+  .context<typeof createTRPCContext>()
+  .meta<Meta>()
+  .create({
+    transformer: superjson,
+    errorFormatter({ shape, error }) {
+      return {
+        ...shape,
+        data: {
+          ...shape.data,
+          zodError:
+            error.cause instanceof ZodError ? error.cause.flatten() : null,
+        },
+      };
+    },
+    defaultMeta: { role: "authenticated" },
+  });
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
@@ -105,13 +121,29 @@ export const createTRPCRouter = t.router;
  * guarantee that a user querying is authorized, but you can still access user session data if they
  * are logged in.
  */
+
 export const publicProcedure = t.procedure;
 
 /** Reusable middleware that enforces users are logged in before running the procedure. */
-const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session?.user) {
+const enforceUserIsAuthed = t.middleware(async ({ ctx, next, meta }) => {
+  if (!ctx.session || !ctx.session.user) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
+
+  if (meta?.role) {
+    if (
+      compareRole({
+        requiredRole: meta.role,
+        userRole: ctx.session.user.role,
+      }) === 0
+    ) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: `Expected: ${meta.role}, current: ${ctx.session.user.role}`,
+      });
+    }
+  }
+
   return next({
     ctx: {
       // infers the `session` as non-nullable
@@ -129,3 +161,19 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+export const communityProcedure = protectedProcedure.meta({
+  role: "communityMember",
+});
+
+export const organizationProcedure = protectedProcedure.meta({
+  role: "organizationMember",
+});
+
+export const adminProcedure = protectedProcedure.meta({
+  role: "admin",
+});
+
+export const systemProcedure = protectedProcedure.meta({
+  role: "system",
+});
