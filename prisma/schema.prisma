@@ -8,21 +8,21 @@ datasource db {
 }
 
 model Account {
-  id                       String  @id @default(cuid())
-  userId                   String
-  type                     String?
-  provider                 String?
-  providerAccountId        String?
-  refresh_token            String?
-  access_token             String?
-  expires_at               Int?
-  ext_expires_in           Int?
-  refresh_token_expires_in Int?
-  token_type               String?
-  scope                    String?
-  id_token                 String?
-  session_state            String?
-  user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id                       String  @id @default(cuid())
+    userId                   String
+    type                     String?
+    provider                 String?
+    providerAccountId        String?
+    refresh_token            String? // @db.Text
+    access_token             String? // @db.Text
+    expires_at               Int?
+    ext_expires_in           Int?
+    refresh_token_expires_in Int?
+    token_type               String?
+    scope                    String?
+    id_token                 String? // @db.Text
+    session_state            String?
+    user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }
@@ -36,15 +36,15 @@ model Session {
 }
 
 model User {
-  id            String        @id @default(cuid())
-  name          String?
-  email         String?       @unique
-  emailVerified DateTime?
-  image         String?
-  role          String?
-  accounts      Account[]
-  sessions      Session[]
-  reservations  Reservation[]
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    role          String?
+    accounts      Account[]
+    sessions      Session[]
+    RFID          RFID[]
 }
 
 model VerificationToken {
@@ -76,4 +76,40 @@ model Office {
   id           String        @id @default(cuid())
   officeNum    Int
   reservations Reservation[]
+}
+
+model Device {
+    connectionId String  @id
+    name         String? @unique
+    type         String?
+    stage        String
+    domain       String
+}
+
+model RFID {
+    id         String   @id
+    userId     String?
+    user       User?    @relation(fields: [userId], references: [id])
+    detections Int      @default(0)
+    updatedAt  DateTime @default(now()) @updatedAt
+}
+
+model Light {
+    id        String   @id @default(cuid())
+    value     Int
+    timeStamp DateTime @default(now())
+}
+
+model Temperature {
+    id        String   @id @default(cuid())
+    value     Int
+    timeStamp DateTime @default(now())
+}
+
+model Admin {
+    email String @unique
+}
+
+model OrganizationMember {
+    email String @unique
 }
