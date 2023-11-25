@@ -15,8 +15,10 @@ export const CommandObject = z.object({
 });
 
 // Must match with nodeMCU
-export const DeviceDataType = z.enum([
-  "temperature",
-  "RFID",
-  "light",
-]);
+export const DeviceDataType = z.enum(["temperature", "RFID", "light"]);
+
+export interface MapLocation {
+  lat: number;
+  lng: number;
+  name: string;
+}

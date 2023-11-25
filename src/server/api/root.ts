@@ -5,6 +5,7 @@ import { officeRouter } from "./routers/office";
 import { reservationRouter } from "./routers/reservation";
 import { AWSRouter } from "~/server/api/routers/aws";
 import { sensorRouter } from "~/server/api/routers/sensor";
+import { apisRouter } from "./routers/apis";
 
 /**
  * This is the primary router for your server.
@@ -18,6 +19,7 @@ export const appRouter = createTRPCRouter({
   device: deviceRouter,
   aws: AWSRouter,
   sensor: sensorRouter,
+  api: apisRouter,
 });
 
 // export type definition of API

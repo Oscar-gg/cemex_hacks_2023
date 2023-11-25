@@ -1,13 +1,22 @@
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 
 import { api } from "~/utils/api";
-import MapContainer from "./mapa";
 import Image from "../images/energy-11.png";
 import Arrow from "../images/arrow-white.png";
 
 export default function Home() {
   const { data: sessionData } = useSession();
+  const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const mutation = api.api.sendPoints.useMutation({
+    onSuccess: (data) => {
+      alert(data);
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
   return (
     <>
       <Head>
@@ -17,10 +26,13 @@ export default function Home() {
       </Head>
       <nav className="flex flex-row justify-between bg-[#0000B3] py-5">
         {/* <h1 className="px-16 text-2xl font-extrabold text-white">CEMEX</h1> */}
-        <img src="/Cemex_logo.png" className="bg-white rounded-md p-2 h-12 ml-2"/>
+        <img
+          src="/Cemex_logo.png"
+          className="ml-2 h-12 rounded-md bg-white p-2"
+        />
         <div className="flex flex-row items-center justify-evenly">
           <p className="pr-16 text-right text-base font-semibold text-white hover:text-white/90">
-            {sessionData ? `Welcome ${sessionData.user.name}!`: "Sign up"}
+            {sessionData ? `Welcome ${sessionData.user.name}!` : "Sign up"}
           </p>
         </div>
       </nav>
@@ -33,8 +45,21 @@ export default function Home() {
           Mantén un ambiente eficiente
         </p>
         <div className="container flex flex-col items-center justify-center px-4 py-8 ">
-          <LoginButton />
+          {sessionData ? <LogoutButton /> : <LoginButton />}
         </div>
+        <button
+          onClick={() => {
+            mutation.mutate({
+              points: [
+                { lat: 1, lng: 2, name: "test" },
+                { lat: 1, lng: 2, name: "test2" },
+              ],
+            });
+          }}
+          className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        >
+          Test sending endpoints
+        </button>
       </main>
     </>
   );
@@ -43,11 +68,6 @@ export default function Home() {
 function LoginButton() {
   const { data: sessionData } = useSession();
 
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
   return (
     <div className="flex flex-row items-center justify-center">
       <button
@@ -55,6 +75,21 @@ function LoginButton() {
         onClick={() => signIn()}
       >
         Log in
+        <img className="h-4 w-4" src={Arrow.src}></img>
+      </button>
+    </div>
+  );
+}
+
+function LogoutButton() {
+
+  return (
+    <div className="flex flex-row items-center justify-center">
+      <button
+        className="flex flex-row items-center justify-center gap-4 rounded-full bg-sky-950 py-2 pl-10 pr-8 text-lg font-semibold text-white hover:bg-sky-800"
+        onClick={() => signOut()}
+      >
+        Log out
         <img className="h-4 w-4" src={Arrow.src}></img>
       </button>
     </div>
