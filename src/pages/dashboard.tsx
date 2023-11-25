@@ -1,27 +1,31 @@
 import NavBar from "~/components/NavBar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { router } from "@trpc/server";
 
 export default function Dashboard() {
     const { data: sessionData, status } = useSession();
     const router = useRouter();
 
-    if (!sessionData) {
-        void router.push("/");
-    }
+    useEffect(() => {
+        if (!sessionData) {
+            router.push('/');
+        }
+    }, []);
 
     return (
         <>
         <NavBar />
-        <div className="absolute inset-0 bg-cover bg-center z-[-1]">
+        
+        <div className="container min-w-full min-h-screen flex flex-col">
+        <div className="absolute inset-0 bg-cover w-screen h-screen bg-center z-[-1]">
           <img
             src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-vector%2Fblue-pink-halftone-background_53876-99004.jpg&f=1&nofb=1&ipt=7f63a6a474411a04136290329f568a99c5ed3e2b0e6358792310beb6750e9009&ipo=images"  
             alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="container min-w-full min-h-screen flex flex-col">
             <div className="flex flex-row pt-14 px-20">
                 <div className="w-2 bg-stone-700 rounded-sm"></div>
                 <p className="text-lg font-semibold text-slate-700 px-6 text-left">
