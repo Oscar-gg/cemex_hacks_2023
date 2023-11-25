@@ -104,18 +104,13 @@ const MapContainer = ({
   };
 
   return (
-    <div>
+   
       <div
         id="map"
         style={{ height: "500px", width: "100%", minHeight: "300px" }}
       ></div>
-      <button
-        onClick={handleLocateMe}
-        className="mx-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-      >
-        Locate Me
-      </button>
-    </div>
+      
+   
   );
 };
 
