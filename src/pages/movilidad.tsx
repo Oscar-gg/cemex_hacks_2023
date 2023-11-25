@@ -5,16 +5,11 @@ import MapContainer from "~/components/movilidad/mapContainer";
 import { Trash2 } from "react-feather";
 import GooglePlacesAutocomplete from "~/components/movilidad/autocomplete";
 import { LoadScript } from "@react-google-maps/api";
-
-interface location {
-  lat: number;
-  lng: number;
-  name: string;
-}
+import { MapLocation } from "~/zod/types";
 
 const Movilidad = () => {
   const [autocompleteCount, setAutocompleteCount] = useState(1);
-  const [locations, setLocations] = useState<location[]>();
+  const [locations, setLocations] = useState<MapLocation[]>();
 
   const handleAddAutocomplete = () => {
     setAutocompleteCount((prevCount) => prevCount + 1);
@@ -44,7 +39,10 @@ const Movilidad = () => {
                   key={index}
                   className="relative mx-2 my-2 flex items-center rounded border p-4 shadow-md"
                 >
-                  <GooglePlacesAutocomplete setPlaces={setLocations} places={locations}/>
+                  <GooglePlacesAutocomplete
+                    setPlaces={setLocations}
+                    places={locations}
+                  />
                   <button
                     onClick={() => handleRemoveAutocomplete(index)}
                     className="ml-auto cursor-pointer text-red-500"

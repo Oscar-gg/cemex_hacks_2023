@@ -1,18 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 
-interface location {
-  lat: number;
-  lng: number;
-  name: string;
-}
+import type { MapLocation } from "~/zod/types";
 
 const GooglePlacesAutocomplete = ({
   places,
   setPlaces,
 }: {
-  setPlaces: React.Dispatch<React.SetStateAction<location[] | undefined>>;
-  places: location[] | undefined;
+  setPlaces: React.Dispatch<React.SetStateAction<MapLocation[] | undefined>>;
+  places: MapLocation[] | undefined;
 }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyApYvTkH-7FbW4paDE7mUXqNxT56srw6ec",
@@ -46,7 +42,7 @@ const GooglePlacesAutocomplete = ({
       autocomplete.addListener("place_changed", () => {
         const place = autocomplete.getPlace();
         console.log("Selected Place:", place);
-        console.log("Test message")
+        console.log("Test message");
         if (places) {
           console.log("Added place");
           setPlaces([
@@ -59,11 +55,13 @@ const GooglePlacesAutocomplete = ({
           ]);
         } else {
           console.log("Added place, places not nul");
-          setPlaces([{
-            lat: place.geometry?.location?.lat() ?? 0,
-            lng: place.geometry?.location?.lng() ?? 0,
-            name: place.name ?? "Unnamed",
-          }]);
+          setPlaces([
+            {
+              lat: place.geometry?.location?.lat() ?? 0,
+              lng: place.geometry?.location?.lng() ?? 0,
+              name: place.name ?? "Unnamed",
+            },
+          ]);
         }
       });
     };

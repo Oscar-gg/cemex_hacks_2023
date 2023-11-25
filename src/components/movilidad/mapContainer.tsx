@@ -4,16 +4,12 @@ import { Loader } from "@googlemaps/js-api-loader";
 let map: google.maps.Map;
 let marker: google.maps.Marker;
 
-interface location {
-  lat: number;
-  lng: number;
-  name: string;
-}
+import { MapLocation } from "~/zod/types";
 
 const MapContainer = ({
   locations,
 }: {
-  locations: location[] | undefined | null;
+  locations: MapLocation[] | undefined | null;
 }) => {
   const [userLocation, setUserLocation] = useState<{
     lat: number;
