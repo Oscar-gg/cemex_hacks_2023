@@ -19,10 +19,12 @@ const Monitoreo = () => {
     const [isOpen, setOpen] = useState(false);
     const [isOpenAdd, setOpenAdd] = useState(false);
     const [id, setId] = useState("");
+
     const [status, setStatus] = useState("Desocupado")
     const [luces, setLuces] = useState("Apagadas")
     const [temperatura, setTemperatura] = useState("20")
     const [time, setTime] = useState("0:00")
+    
     const [num, setNum] = useState(-1)
 
     const handleOpen = (key: number, officeId: string, num: number) => {
