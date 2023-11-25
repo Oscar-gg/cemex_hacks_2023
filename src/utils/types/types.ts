@@ -1,5 +1,5 @@
 export type Horario = {
     hour: string,
-    reserved: Boolean,
+    reserved: boolean,
     email: string
 }

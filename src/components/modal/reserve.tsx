@@ -1,18 +1,16 @@
 import clsx from "clsx";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { UseHorarios } from "~/utils/hooks/useHorarios";
 import { Horario } from "~/utils/types/types";
 
 interface ReserveProps {
-    status: string
     id: string;
     num: number;
 }
 
 
-export const Reserve: React.FC<ReserveProps> = ({ id, status, num }) => {
+export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
     const horarios = UseHorarios(id);
     const [horario, setHorario] = useState<Horario>();
     const [keyH, setKeyH] = useState(-1);

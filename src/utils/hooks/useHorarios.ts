@@ -6,7 +6,7 @@ export const UseHorarios = (id:string) => {
     const hours = generateHoursArray();
     // console.log(hours)
     const reservations = [];
-    for (let hour of hours) {
+    for (const hour of hours) {
         // console.log(hour)
         const reservation = {hour: hour, reserved: false, email: "ale@test.mx"};
         reservations.push(reservation);

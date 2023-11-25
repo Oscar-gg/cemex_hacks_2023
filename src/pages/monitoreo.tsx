@@ -1,17 +1,11 @@
 import Nav from "~/components/Nav/Nav";
 import Title from "~/components/general/title";
 import { Toaster, toast } from 'react-hot-toast';
-import { AiOutlineCloseCircle } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
-import { UseHorarios } from "~/utils/hooks/useHorarios";
-import clsx from "clsx";
-import { Horario } from "~/utils/types/types";
-import { Modal } from "~/components/modal/modal";
 import { Reserve } from "~/components/modal/reserve";
 import { api } from "~/utils/api";
-import { stringify } from "querystring";
-import Trpc from "./api/trpc/[trpc]";
 import { TRPCError } from "@trpc/server";
+import { useState } from "react";
+import { Modal } from "~/components/modal/modal";
 
 const Monitoreo = () => {
 
@@ -37,7 +31,7 @@ const Monitoreo = () => {
         <>
             <Toaster />
             <Modal isOpen={isOpen}>
-                <Reserve id={id} num={num} status={status} />
+                <Reserve id={id} num={num} />
             </Modal>
 
             <Modal isOpen={isOpenAdd}>

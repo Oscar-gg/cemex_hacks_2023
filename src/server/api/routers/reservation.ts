@@ -1,10 +1,8 @@
-import { connect } from "http2";
 import { z } from "zod";
 
 import {
   createTRPCRouter,
   protectedProcedure,
-  publicProcedure,
 } from "~/server/api/trpc";
 
 export const reservationRouter = createTRPCRouter({
