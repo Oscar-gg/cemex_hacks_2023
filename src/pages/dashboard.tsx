@@ -1,13 +1,13 @@
 import { signOut } from "next-auth/react";
 
-export default function CenterPage() {
+export default function Dashboard() {
     return (
         <>
         <nav className = "flex flex-row justify-between py-5 bg-sky-900">
             <h1 className="text-white font-extrabold px-16 text-2xl">CEMEX</h1>
             <div className="flex flex-row justify-evenly items-center">
-                <p className="text-white hover:text-white/90 px-10 text-base font-semibold text-right">
-                    Perfil
+                <p className="text-white px-10 text-base font-semibold text-right">
+                    User
                 </p>
                 <p className="text-white hover:text-white/90 pr-16 text-base font-semibold text-right" onClick={() => void signOut()}>
                     Sign Out
