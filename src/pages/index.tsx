@@ -7,6 +7,7 @@ import Image from "../images/energy-11.png";
 import Arrow from "../images/arrow-white.png";
 
 export default function Home() {
+  const { data: sessionData } = useSession();
   return (
     <>
       <Head>
@@ -14,11 +15,12 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className="flex flex-row justify-between bg-sky-900 py-5">
-        <h1 className="px-16 text-2xl font-extrabold text-white">CEMEX</h1>
+      <nav className="flex flex-row justify-between bg-[#0000B3] py-5">
+        {/* <h1 className="px-16 text-2xl font-extrabold text-white">CEMEX</h1> */}
+        <img src="/Cemex_logo.png" className="bg-white rounded-md p-2 h-12 ml-2"/>
         <div className="flex flex-row items-center justify-evenly">
           <p className="pr-16 text-right text-base font-semibold text-white hover:text-white/90">
-            Sign up
+            {sessionData ? `Welcome ${sessionData.user.name}!`: "Sign up"}
           </p>
         </div>
       </nav>
