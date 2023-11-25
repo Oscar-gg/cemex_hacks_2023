@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    // provider = "cockroachdb"
+    // provider = "sqlite" // Use for development
+    provider = "cockroachdb" // Use for deployment
     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
