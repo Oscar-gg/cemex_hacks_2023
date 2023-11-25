@@ -4,10 +4,13 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from "../images/energy-11.png";
 import Arrow from "../images/arrow-white.png";
+import { useRouter } from "next/router";
+import { LoadingScreen } from "~/components/general/LoadingScreen";
 
 export default function Home() {
-  const { data: sessionData } = useSession();
+  const { data: sessionData, status } = useSession();
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const router = useRouter();
   const mutation = api.api.sendPoints.useMutation({
     onSuccess: (data) => {
       alert(data);
@@ -16,6 +19,14 @@ export default function Home() {
       alert(error);
     },
   });
+
+  if (status === "loading") return <LoadingScreen />;
+
+  // Check if user is logged in redirect to dashboard
+
+  if (sessionData) {
+    void router.push("/centralPage");
+  }
 
   return (
     <>
@@ -82,7 +93,6 @@ function LoginButton() {
 }
 
 function LogoutButton() {
-
   return (
     <div className="flex flex-row items-center justify-center">
       <button
