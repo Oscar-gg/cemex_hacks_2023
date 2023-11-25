@@ -4,6 +4,7 @@ import Link from "next/link";
 
 
 import { api } from "~/utils/api";
+import MapContainer from "./mapa";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
@@ -73,6 +74,8 @@ function AuthShowcase() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
+      
+
       <p className="text-center text-2xl text-white">
         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
         {secretMessage && <span> - {secretMessage}</span>}
@@ -83,6 +86,7 @@ function AuthShowcase() {
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
+
     </div>
   );
 }

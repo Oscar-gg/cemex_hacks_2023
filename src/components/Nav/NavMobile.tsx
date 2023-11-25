@@ -31,9 +31,9 @@ const NavMobile = ({ routes }: { routes: route[] }) => {
                     <div className="z-50 flex flex-col items-center py-4 px-5 bg-custom-dark-gray w-full">
 
 
-                        {/* {routes.map((route, key) => (
+                        {routes.map((route, key) => (
                             <NavElement key={key} title={route.title} route={route.route} onClick={hanldeClick} selected={path === route.path} mobile />
-                        ))} */}
+                        ))}
                         {/* <AuthButton mobile /> */}
 
                     </div>
