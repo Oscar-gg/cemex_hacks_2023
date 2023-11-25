@@ -6,9 +6,9 @@ export default function Dashboard() {
     const { data: sessionData, status } = useSession();
     const router = useRouter();
 
-    if (!sessionData) {
-        void router.push("/");
-    }
+    // if (!sessionData) {
+    //     void router.push("/");
+    // }
 
     return (
         <>
