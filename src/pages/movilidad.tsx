@@ -61,25 +61,38 @@ const Movilidad = () => {
           </div>
         </div>
 
-        <div className="flex justify-around p-8" style={{ marginTop: "-220" }}>
-  <Card
-    imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmira.es%2Fwp-content%2Fuploads%2F2020%2F12%2Fgasolina-gasolinera-combustible.jpg&f=1&nofb=1&ipt=4e835daa87d4666f5d9bbf9c3762ebc32787779ee8d0ad0c0221a27b54a75fdc&ipo=images"
-    title="Costo total"
-    description="$525.25"
-    
-  />
-  <Card
-    imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftrackermaster.com%2Fwp-content%2Fuploads%2F2019%2F09%2Fplanificador-de-rutas-de-reparto.jpg&f=1&nofb=1&ipt=9309fe7e67c66ae2377979e82489666c1e7436993ed20e0cc4234690b9fab2d3&ipo=images"
-    title="Maxima distancia entre rutas"
-    description="15 km"
-    
-  />
-  <Card
-    imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmira.es%2Fwp-content%2Fuploads%2F2020%2F12%2Fgasolina-gasolinera-combustible.jpg&f=1&nofb=1&ipt=4e835daa87d4666f5d9bbf9c3762ebc32787779ee8d0ad0c0221a27b54a75fdc&ipo=images"
-    title="Cantidad de litros"
-    description="680 L"
-  />
+        <div className="flex justify-around p-8" style={{ marginTop: "-220px" }}>
+  {/* First Column (2x2 grid of cards) */}
+  <div className="grid grid-cols-2 gap-4">
+    <Card
+      imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmira.es%2Fwp-content%2Fuploads%2F2020%2F12%2Fgasolina-gasolinera-combustible.jpg&f=1&nofb=1&ipt=4e835daa87d4666f5d9bbf9c3762ebc32787779ee8d0ad0c0221a27b54a75fdc&ipo=images"
+      title="Costo total"
+      description="$525.25"
+    />
+    <Card
+      imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftrackermaster.com%2Fwp-content%2Fuploads%2F2019%2F09%2Fplanificador-de-rutas-de-reparto.jpg&f=1&nofb=1&ipt=9309fe7e67c66ae2377979e82489666c1e7436993ed20e0cc4234690b9fab2d3&ipo=images"
+      title="Maxima distancia entre rutas"
+      description="15 km"
+    />
+    <Card
+      imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmira.es%2Fwp-content%2Fuploads%2F2020%2F12%2Fgasolina-gasolinera-combustible.jpg&f=1&nofb=1&ipt=4e835daa87d4666f5d9bbf9c3762ebc32787779ee8d0ad0c0221a27b54a75fdc&ipo=images"
+      title="Cantidad de litros"
+      description="680 L"
+    />
+    <Card
+      imageUrl="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmira.es%2Fwp-content%2Fuploads%2F2020%2F12%2Fgasolina-gasolinera-combustible.jpg&f=1&nofb=1&ipt=4e835daa87d4666f5d9bbf9c3762ebc32787779ee8d0ad0c0221a27b54a75fdc&ipo=images"
+      title="Ruta optima"
+      description="1 > 0 > 3 > 0"
+    />
+  </div>
+
+  {/* Second Column (Red Container named Recomendaciones) */}
+  <div className="bg-green-500 p-4 rounded">
+    <h2 className="text-white font-bold text-xl">Recomendaciones</h2>
+    {/* Add your recommendation content here */}
+  </div>
 </div>
+
 
       </LoadScript>
     </>
