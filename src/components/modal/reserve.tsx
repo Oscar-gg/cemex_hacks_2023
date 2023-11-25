@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { api } from "~/utils/api";
 import { UseHorarios } from "~/utils/hooks/useHorarios";
 import { Horario } from "~/utils/types/types";
 
@@ -11,21 +12,26 @@ interface ReserveProps {
 
 
 export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
-    const horarios = UseHorarios(id);
+    // const reserved =  api.reservation.getReservations.useQuery({officeId: id})
+    const horarios = api.reservation.getHorarios.useQuery({ officeId: id }).data ?? [];
     const [horario, setHorario] = useState<Horario>();
     const [keyH, setKeyH] = useState(-1);
+    const addReservation = api.reservation.addReservation.useMutation();
 
     const handleSet = (horario:Horario, curKey:number) => {
         setHorario(horario);
         setKeyH(curKey);
+        
     }   
 
     const handleReserve = () => {
         if (horario?.reserved) {
             toast.error("No disponible")
         } else {
+            addReservation.mutate({officeId: id, time: horario?.hour ?? ""});
             toast.success("Log deleted successfully");
         }
+        setKeyH(-1);
     }
 
     return (
@@ -37,7 +43,7 @@ export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
                     <div >
                         <div className='mb-2'>
                             Ofice
-                            <span> {id} </span>
+                            <span> {num} </span>
                         </div>
 
                         <div>
@@ -54,7 +60,7 @@ export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
                                             </div>
                                             {horario.reserved && (
                                                 <div>
-                                                    horario.email
+                                                    {horario.email}
                                                 </div>
                                             )}
                                         </div>
