@@ -1,11 +1,33 @@
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import Head from "next/head";
 
 import { api } from "~/utils/api";
 import Image from "../images/energy-11.png";
 import Arrow from "../images/arrow-white.png";
+import { useRouter } from "next/router";
+import { LoadingScreen } from "~/components/general/LoadingScreen";
 
 export default function Home() {
+  const { data: sessionData, status } = useSession();
+  const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const router = useRouter();
+  const mutation = api.api.sendPoints.useMutation({
+    onSuccess: (data) => {
+      alert(data);
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
+
+  if (status === "loading") return <LoadingScreen />;
+
+  // Check if user is logged in redirect to dashboard
+
+  if (sessionData) {
+    void router.push("/centralPage");
+  }
+
   return (
     <>
       <Head>
@@ -13,41 +35,76 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className = "flex flex-row justify-between py-5 bg-sky-900">
-            <h1 className="text-white font-extrabold px-16 text-2xl">CEMEX</h1>
-            <div className="flex flex-row justify-evenly items-center">
-                <p className="text-white hover:text-white/90 pr-16 text-base font-semibold text-right">Sign up</p>
-            </div>
-      </nav>
-      <main className="flex min-h-screen flex-col items-center justify-center px-50 bg-gradient-radial from-sky-100/90 to-white">
-          <img className="w-16 h-16" src={Image.src}/>
-          <h1 className="text-5xl sm:text-8xl font-bold underline underline-offset-8 decoration-4 decoration-sky-300 text-sky-900 tracking-wide py-2 pt-12">
-            CEMEX
-          </h1>
-          <p className="text-stone-900 text-xl py-4">Mantén un ambiente eficiente</p>
-        <div className="container flex flex-col items-center justify-center px-4 py-8 ">
-          <LoginButton />
+      <nav className="flex flex-row justify-between bg-sky-900 py-5">
+        <img
+          src="/Cemex_logo.png"
+          className="ml-2 h-12 rounded-md bg-white p-2"
+        />
+        <div className="flex flex-row items-center justify-evenly">
+          <p className="pr-16 text-right text-base font-semibold text-white hover:text-white/90">
+            {sessionData ? `Welcome ${sessionData.user.name}!` : "Sign up"}
+          </p>
         </div>
+      </nav>
+      <main className="px-50 bg-gradient-radial flex min-h-screen flex-col items-center justify-center relative">
+        <div className="absolute inset-0 bg-cover bg-center z-[-1]">
+          <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-vector%2Fblue-pink-halftone-background_53876-99004.jpg&f=1&nofb=1&ipt=7f63a6a474411a04136290329f568a99c5ed3e2b0e6358792310beb6750e9009&ipo=images"  
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <img className="h-16 w-16" src={Image.src} />
+        <h1 className="py-2 pt-12 text-5xl font-bold tracking-wide text-sky-950 underline decoration-sky-300 decoration-4 underline-offset-8 sm:text-8xl">
+          CEMEX
+        </h1>
+        <p className="py-4 text-xl text-stone-900">
+          Mantén un ambiente eficiente
+        </p>
+        <div className="container flex flex-col items-center justify-center px-4 py-8 ">
+          {sessionData ? <LogoutButton /> : <LoginButton />}
+        </div>
+        <button
+          onClick={() => {
+            mutation.mutate({
+              points: [
+                { lat: 1, lng: 2, name: "test" },
+                { lat: 1, lng: 2, name: "test2" },
+              ],
+            });
+          }}
+          className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+        >
+          Test sending endpoints
+        </button>
       </main>
     </>
   );
 }
-
 function LoginButton() {
   const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
 
   return (
     <div className="flex flex-row items-center justify-center">
       <button
-        className="flex flex-row items-center justify-center gap-4 rounded-full bg-sky-950 pr-8 pl-10 py-2 text-lg text-white font-semibold hover:bg-sky-800"
+        className="flex flex-row items-center justify-center gap-4 rounded-full bg-sky-950 py-2 pl-10 pr-8 text-lg font-semibold text-white hover:bg-sky-800"
         onClick={() => signIn()}
       >
         Log in
+        <img className="h-4 w-4" src={Arrow.src}></img>
+      </button>
+    </div>
+  );
+}
+
+function LogoutButton() {
+  return (
+    <div className="flex flex-row items-center justify-center">
+      <button
+        className="flex flex-row items-center justify-center gap-4 rounded-full bg-sky-950 py-2 pl-10 pr-8 text-lg font-semibold text-white hover:bg-sky-800"
+        onClick={() => signOut()}
+      >
+        Log out
         <img className="h-4 w-4" src={Arrow.src}></img>
       </button>
     </div>
