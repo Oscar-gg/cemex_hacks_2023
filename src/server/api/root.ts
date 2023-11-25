@@ -14,7 +14,7 @@ import { sensorRouter } from "~/server/api/routers/sensor";
 export const appRouter = createTRPCRouter({
   post: postRouter,
   office: officeRouter,
-  reservation: reservationRouter
+  reservation: reservationRouter,
   device: deviceRouter,
   aws: AWSRouter,
   sensor: sensorRouter,
