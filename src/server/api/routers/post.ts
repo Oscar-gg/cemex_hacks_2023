@@ -22,8 +22,8 @@ export const postRouter = createTRPCRouter({
   //     await new Promise((resolve) => setTimeout(resolve, 1000));
 
 
-      return "a"
-    }),
+    //   return "a"
+    // }),
 
   getLatest: protectedProcedure.query(({ ctx }) => {
     return "a"
