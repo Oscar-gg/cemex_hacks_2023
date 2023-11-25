@@ -24,8 +24,7 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className="flex flex-row justify-between bg-[#0000B3] py-5">
-        {/* <h1 className="px-16 text-2xl font-extrabold text-white">CEMEX</h1> */}
+      <nav className="flex flex-row justify-between bg-sky-900 py-5">
         <img
           src="/Cemex_logo.png"
           className="ml-2 h-12 rounded-md bg-white p-2"
@@ -36,9 +35,16 @@ export default function Home() {
           </p>
         </div>
       </nav>
-      <main className="px-50 bg-gradient-radial flex min-h-screen flex-col items-center justify-center from-sky-100/90 to-white">
+      <main className="px-50 bg-gradient-radial flex min-h-screen flex-col items-center justify-center relative">
+        <div className="absolute inset-0 bg-cover bg-center z-[-1]">
+          <img
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-vector%2Fblue-pink-halftone-background_53876-99004.jpg&f=1&nofb=1&ipt=7f63a6a474411a04136290329f568a99c5ed3e2b0e6358792310beb6750e9009&ipo=images"  
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
         <img className="h-16 w-16" src={Image.src} />
-        <h1 className="py-2 pt-12 text-5xl font-bold tracking-wide text-sky-900 underline decoration-sky-300 decoration-4 underline-offset-8 sm:text-8xl">
+        <h1 className="py-2 pt-12 text-5xl font-bold tracking-wide text-sky-950 underline decoration-sky-300 decoration-4 underline-offset-8 sm:text-8xl">
           CEMEX
         </h1>
         <p className="py-4 text-xl text-stone-900">
@@ -64,7 +70,6 @@ export default function Home() {
     </>
   );
 }
-
 function LoginButton() {
   const { data: sessionData } = useSession();
 
