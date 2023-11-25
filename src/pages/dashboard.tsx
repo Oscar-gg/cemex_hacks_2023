@@ -1,19 +1,18 @@
-import { signOut } from "next-auth/react";
+import NavBar from "~/components/NavBar";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Dashboard() {
+    const { data: sessionData, status } = useSession();
+    const router = useRouter();
+
+    if (!sessionData) {
+        void router.push("/");
+    }
+
     return (
         <>
-        <nav className = "flex flex-row justify-between py-5 bg-sky-900">
-            <h1 className="text-white font-extrabold px-16 text-2xl">CEMEX</h1>
-            <div className="flex flex-row justify-evenly items-center">
-                <p className="text-white px-10 text-base font-semibold text-right">
-                    User
-                </p>
-                <p className="text-white hover:text-white/90 pr-16 text-base font-semibold text-right" onClick={() => void signOut()}>
-                    Sign Out
-                </p>
-            </div>
-        </nav>
+        <NavBar />
         <div className="container min-w-full min-h-screen flex flex-col bg-gradient-radial from-sky-100/90 to-white">
             <div className="flex flex-row pt-14 px-20">
                 <div className="w-2 bg-stone-700 rounded-sm"></div>

@@ -24,6 +24,8 @@ export default function Residuos() {
         return "INORGÁNICO";
     };
 
+    const text = fakeML();
+
     return (
         <>
         <nav className = "flex flex-row justify-between py-5 bg-sky-900">
@@ -43,7 +45,7 @@ export default function Residuos() {
             <img className="my-4 h-[40%] w-[40%]" src={file}></img>
             <h2 className="text-4xl text-sky-950 font-extrabold underline underline-offset-4">Tu residuo es:</h2>
             <div className="border-4 border-dashed text-center justify-center border-sky-300 rounded-lg">
-                <h2 className="text-5xl text-sky-900 tracking-tight font-extrabold py-4 px-28">{fakeML}</h2>
+                <h2 className="text-5xl text-sky-900 tracking-tight font-extrabold py-4 px-28">{text}</h2>
             </div>
         </div>
         </>

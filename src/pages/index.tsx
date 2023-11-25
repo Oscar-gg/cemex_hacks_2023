@@ -1,5 +1,6 @@
 import { signIn, useSession, signOut } from "next-auth/react";
 import Head from "next/head";
+import NavBar from "~/components/NavBar";
 
 import { api } from "~/utils/api";
 import Image from "../images/energy-11.png";
@@ -25,7 +26,7 @@ export default function Home() {
   // Check if user is logged in redirect to dashboard
 
   if (sessionData) {
-    void router.push("/centralPage");
+    void router.push("/dashboard");
   }
 
   return (
@@ -35,17 +36,7 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <nav className="flex flex-row justify-between bg-sky-900 py-5">
-        <img
-          src="/Cemex_logo.png"
-          className="ml-2 h-12 rounded-md bg-white p-2"
-        />
-        <div className="flex flex-row items-center justify-evenly">
-          <p className="pr-16 text-right text-base font-semibold text-white hover:text-white/90">
-            {sessionData ? `Welcome ${sessionData.user.name}!` : "Sign up"}
-          </p>
-        </div>
-      </nav>
+      <NavBar />
       <main className="px-50 bg-gradient-radial flex min-h-screen flex-col items-center justify-center relative">
         <div className="absolute inset-0 bg-cover bg-center z-[-1]">
           <img
