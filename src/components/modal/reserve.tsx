@@ -21,6 +21,7 @@ export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
     const handleSet = (horario:Horario, curKey:number) => {
         setHorario(horario);
         setKeyH(curKey);
+        
     }   
 
     const handleReserve = () => {
