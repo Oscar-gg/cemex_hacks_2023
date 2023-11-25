@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// import { sensorCaller, sessionCaller } from "~/server/api/ApiCaller";
+import { sensorCaller } from "~/server/api/ApiCaller";
 
-// import { DeviceDataType } from "~/zod/types";
+import { DeviceDataType } from "~/zod/types";
 import { z } from "zod";
 
 type ResponseData = {
@@ -22,21 +22,23 @@ export default async function handler(
 
   const { dataType, data, id } = req.body;
   try {
-    // const type = DeviceDataType.parse(dataType);
-    const type = "temperature";
+    const type = DeviceDataType.parse(dataType);
 
     if (type === "temperature") {
-      // const temperature = z.number().parse(data);
-      // await sensorCaller.addTemperature({
-      //   data: temperature,
-      // });
+      const temperature = z.number().parse(data);
+      await sensorCaller.addTemperature({
+        data: temperature,
+      });
     } else if (type === "light") {
-      // const lightDetection = z.string().parse(data);
-      // const id_ = z.string().parse(id);
-      // await sensorCaller.addLight({
-      //   lightAfter: lightDetection,
-      //   sessionId: id_,
-      // });
+      const lightDetection = z.number().parse(data);
+      await sensorCaller.addLight({
+        data: lightDetection,
+      });
+    } else if (type === "RFID") {
+      const rfidDetection = z.string().parse(data);
+      await sensorCaller.addRFID({
+        data: rfidDetection,
+      });
     } else {
       throw new Error("Unknown data type");
     }

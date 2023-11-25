@@ -17,4 +17,6 @@ const systemContext = {
 
 export const deviceCaller = appRouter.device.createCaller(systemContext);
 
+export const sensorCaller = appRouter.sensor.createCaller(systemContext);
+
 // export const awsCaller = appRouter.aws.createCaller(systemContext);

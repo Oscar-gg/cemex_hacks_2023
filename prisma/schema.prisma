@@ -15,7 +15,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -54,6 +53,7 @@ model User {
     role          String?
     accounts      Account[]
     sessions      Session[]
+    RFID          RFID[]
 }
 
 model VerificationToken {
@@ -70,6 +70,26 @@ model Device {
     type         String?
     stage        String
     domain       String
+}
+
+model RFID {
+    id         String   @id
+    userId     String?
+    user       User?    @relation(fields: [userId], references: [id])
+    detections Int      @default(0)
+    updatedAt  DateTime @default(now()) @updatedAt
+}
+
+model Light {
+    id        String   @id @default(cuid())
+    value     Int
+    timeStamp DateTime @default(now())
+}
+
+model Temperature {
+    id        String   @id @default(cuid())
+    value     Int
+    timeStamp DateTime @default(now())
 }
 
 model Admin {

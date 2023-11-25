@@ -13,3 +13,10 @@ export const CommandObject = z.object({
   id: z.string().optional(),
   open: z.number().optional(),
 });
+
+// Must match with nodeMCU
+export const DeviceDataType = z.enum([
+  "temperature",
+  "RFID",
+  "light",
+]);
