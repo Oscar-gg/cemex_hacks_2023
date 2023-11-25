@@ -6,28 +6,33 @@ import { api } from "~/utils/api";
 import { TRPCError } from "@trpc/server";
 import { useState } from "react";
 import { Modal } from "~/components/modal/modal";
+import { useSession } from "next-auth/react";
 
 const Monitoreo = () => {
 
     const offices = api.office.getOffices.useQuery().data;
-    // const Data = [
-    //     { id: "1", status: "Ocupado", luces: "encendido", temperatura: "81", time: "eoieo", num: 1 }
-    // ]
+    const session = useSession();
 
+    // const admin = session.data?.user.role == "admin";
     const admin = true;
 
     const [isOpen, setOpen] = useState(false);
     const [isOpenAdd, setOpenAdd] = useState(false);
     const [id, setId] = useState("");
     const [status, setStatus] = useState("Desocupado")
+    const [luces, setLuces] = useState("Apagadas")
+    const [temperatura, setTemperatura] = useState("20")
+    const [time, setTime] = useState("0:00")
     const [num, setNum] = useState(-1)
 
-    const handleOpen = (key: number, officeId:string, num:number) => {
+    const handleOpen = (key: number, officeId: string, num: number) => {
         setId(officeId)
         setNum(num)
         // setStatus(Data[key]?.status ?? "Desocupado")
         setOpen(!isOpen);
     }
+
+
 
     return (
         <>
@@ -50,7 +55,7 @@ const Monitoreo = () => {
                                 <th className="text-start">Oficina</th>
                                 <th className="text-start">Status</th>
                                 <th className="text-start">Luces</th>
-                                <th className="text-start">Temperatura</th>
+                                <th className="text-start">Temperatura °C</th>
                                 <th className="text-start">Timestamp</th>
                             </tr>
                         </thead>
@@ -59,10 +64,10 @@ const Monitoreo = () => {
                                 offices.map((office, key) => (
                                     <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key, office.id, office.officeNum)}>
                                         <td>{office.officeNum}</td>
-                                        {/* <td>{log.status ?? "ocupado"}</td>
-                                        <td>{log.luces}</td>
-                                        <td>{log.temperatura}</td>
-                                        <td>{log.time}</td> */}
+                                        <td>{status ?? "ocupado"}</td>
+                                        <td>{luces}</td>
+                                        <td>{temperatura}</td>
+                                        <td>{time}</td>
                                     </tr>
 
                                 ))
@@ -77,9 +82,12 @@ const Monitoreo = () => {
                 </div>
 
                 {admin && (
-                    <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
-                        Add office
-                    </button>
+                    <div>
+                        <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
+                            Add office
+                        </button>
+
+                    </div>
                 )}
 
             </div>
@@ -119,6 +127,7 @@ export const AddOffice = () => {
             <button onClick={handleAdd} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
                 Add office
             </button>
+
         </div>
     )
 }
