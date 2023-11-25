@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import {
-  systemProcedure,
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
@@ -9,7 +8,7 @@ import {
 } from "~/server/api/trpc";
 
 export const deviceRouter = createTRPCRouter({
-  addDevice: systemProcedure
+  addDevice: adminProcedure
     .input(
       z.object({
         connectionId: z.string(),
@@ -39,7 +38,7 @@ export const deviceRouter = createTRPCRouter({
       return false;
     }),
 
-  setDevice: systemProcedure
+  setDevice: adminProcedure
     .input(
       z.object({
         connectionId: z.string(),
@@ -76,7 +75,7 @@ export const deviceRouter = createTRPCRouter({
       return false;
     }),
 
-  removeDevice: systemProcedure
+  removeDevice: adminProcedure
     .input(z.object({ connectionId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       // simulate a slow db call

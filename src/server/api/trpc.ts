@@ -34,7 +34,6 @@ interface Meta {
   role?:
     | "unauthenticated"
     | "authenticated"
-    | "communityMember"
     | "organizationMember"
     | "admin"
     | "system";
@@ -162,10 +161,6 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next, meta }) => {
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
 
-export const communityProcedure = protectedProcedure.meta({
-  role: "communityMember",
-});
-
 export const organizationProcedure = protectedProcedure.meta({
   role: "organizationMember",
 });
@@ -174,6 +169,3 @@ export const adminProcedure = protectedProcedure.meta({
   role: "admin",
 });
 
-export const systemProcedure = protectedProcedure.meta({
-  role: "system",
-});
