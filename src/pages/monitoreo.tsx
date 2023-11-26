@@ -64,12 +64,12 @@ const Monitoreo = () => {
                         <tbody>
                             {offices ? (
                                 offices.map((office, key) => (
-                                    <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key, office.id, office.officeNum)}>
-                                        <td className="pr-8">{office.officeNum}</td>
+                                    <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key, office.office.id, office.office.officeNum)}>
+                                        <td className="pr-8">{office.office.officeNum}</td>
                                         <td className="pr-8">{status ?? "ocupado"}</td>
-                                        <td className="pr-8">{luces}</td>
-                                        <td className="pr-8">{temperatura}</td>
-                                        <td className="pr-8">{time}</td>
+                                        <td className="pr-8">{office.light.toString()}</td>
+                                        <td className="pr-8">{office.temp.toString()}</td>
+                                        <td className="pr-8">{office.time.toString()}</td>
                                     </tr>
 
                                 ))
@@ -84,9 +84,12 @@ const Monitoreo = () => {
                 </div>
 
                 {admin && (
-                    <div>
+                    <div className="flex gap-3">
                         <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
                             Add office
+                        </button>
+                        <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
+                            Ver comparativa
                         </button>
 
                     </div>
