@@ -13,12 +13,12 @@ const Comparativa = () => {
         <div className="my-6 flex flex-row flex-wrap justify-around gap-x-5">
           <CompareCard
             data={[
-              { energyConsumption: 20, lightLevel: 400, temperature: 25 },
+              { energyConsumption: 18, lightLevel: 400, temperature: 25 },
               { energyConsumption: 25, lightLevel: 400, temperature: 18 },
               { energyConsumption: 20, lightLevel: 400, temperature: 31 },
               { energyConsumption: 20, lightLevel: 400, temperature: 24 },
             ]}
-            officeName="Oficina A"
+            officeName="Oficina A (con SRM)"
             time={"Sun Nov 26 2023 09:47:20 GMT-0600 (Central Standard Time)"}
           />
           <CompareCard
@@ -28,7 +28,7 @@ const Comparativa = () => {
               { energyConsumption: 24, lightLevel: 400, temperature: 31 },
               { energyConsumption: 30, lightLevel: 400, temperature: 24 },
             ]}
-            officeName="Oficina B (con SRM)"
+            officeName="Oficina B"
             time={"Sun Nov 26 2023 09:47:20 GMT-0600 (Central Standard Time)"}
           />
         </div>
