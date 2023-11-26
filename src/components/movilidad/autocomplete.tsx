@@ -56,7 +56,7 @@ const GooglePlacesAutocomplete = ({
             {
               lat: place.geometry?.location?.lat() ?? 0,
               lng: place.geometry?.location?.lng() ?? 0,
-              name: place.name ?? "Unnamed",
+              name: place.formatted_address ?? "Unnamed",
             },
           ]);
         } else {
@@ -65,7 +65,7 @@ const GooglePlacesAutocomplete = ({
             {
               lat: place.geometry?.location?.lat() ?? 0,
               lng: place.geometry?.location?.lng() ?? 0,
-              name: place.name ?? "Unnamed",
+              name: place.formatted_address ?? "Unnamed",
             },
           ]);
         }
