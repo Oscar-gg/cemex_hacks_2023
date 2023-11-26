@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { CompareCard } from "~/components/card/Compare";
 
 const Monitoreo = () => {
-  const offices = api.office.getOffices.useQuery().data;
+  const offices = api.office.getOffices.useQuery(undefined, {refetchInterval: 1000, staleTime: 1000,}).data;
   const session = useSession();
 
   const router = useRouter();
