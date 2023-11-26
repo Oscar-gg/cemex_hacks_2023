@@ -19,13 +19,34 @@ export default function Residuos() {
     }
   };
 
+  const handleDownload = () => {
+    const filePath = `/`;
+    const files = [
+      "/botella.png",
+      "/lata.png",
+      "/papel.png"
+    ]
+
+    files.forEach((file) => {
+      const a = document.createElement('a');
+      a.href = file;
+      a.download = file;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    })
+
+
+
+  }
+
   const check = () => {
     console.log(fileName)
     if (fileName) {
       // const shortened = fileName.split(".", 2);
-      if (fileName.startsWith("botella")) {
+      if (fileName.includes("botella")) {
         setSelected("plástico")
-      } else if (fileName.startsWith("lata")) {
+      } else if (fileName.includes("lata")) {
         setSelected("latas")
       } else {
         setSelected("papel")
@@ -58,8 +79,11 @@ export default function Residuos() {
         <div className="px-10">
           <Title title="Manejo de residuos" />
           <Description description="Captura una foto de un residuo para clasificarlo" />
+          <button onClick={handleDownload} className=" bg-sky-400 rounded-full text-white px-2 py-1">
+            Download test imgs
+          </button>
         </div>
-        <div className=" container flex min-h-screen min-w-full flex-col items-center justify-center gap-4 ">
+        <div className=" container flex min-h-screen min-w-full flex-col items-center justify-center gap-4 mt-2">
           <div className="flex flex-col gap-4 md:flex-row">
             <input type="file" onChange={handleChange} />
             <button onClick={check} className="ml-2 bg-sky-400 rounded-full text-white px-2 py-1">
