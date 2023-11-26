@@ -55,12 +55,12 @@ export default function Residuos() {
       {/* <NavBar /> */}
       <Nav />
       <div className="pt-24 bg-gradient-radial from-sky-100/90 to-white">
-        <div className="pl-10">
+        <div className="px-10">
           <Title title="Manejo de residuos" />
           <Description description="Captura una foto de un residuo para clasificarlo" />
         </div>
         <div className=" container flex min-h-screen min-w-full flex-col items-center justify-center gap-4 ">
-          <div>
+          <div className="flex flex-col gap-4 md:flex-row">
             <input type="file" onChange={handleChange} />
             <button onClick={check} className="ml-2 bg-sky-400 rounded-full text-white px-2 py-1">
               Clasificar
@@ -85,7 +85,7 @@ export default function Residuos() {
           <div className="pt-4  font-medium pb-2">
             Piso 1
           </div>
-          <div className="grid grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <Loc selected={selected} type="papel" loc="Sala principal" />
             <Loc selected={selected} type="plástico" loc="Recepción" />
             <Loc selected={selected} type="inorganico" loc="Cocina" />
@@ -93,7 +93,7 @@ export default function Residuos() {
           <div className="pt-4 font-medium pb-2">
             Piso 2
           </div>
-          <div className="grid grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5">
             <Loc selected={selected} type="plástico" loc="Sala Primera" />
             <Loc selected={selected} type="papel" loc="Elevadores" />
             <Loc selected={selected} type="organico" loc="Cocina" />

@@ -7,6 +7,7 @@ import { TRPCError } from "@trpc/server";
 import { useState } from "react";
 import { Modal } from "~/components/modal/modal";
 import { useSession } from "next-auth/react";
+import Description from "~/components/general/description";
 
 const Monitoreo = () => {
 
@@ -47,27 +48,28 @@ const Monitoreo = () => {
             <Nav />
             <div className="w-full h-screen bg-slate-50 p-8 z-20 bg-gradient-radial from-sky-100/90 to-white pt-24">
                 <Title title="Monitoreo de Sensores" />
+                <Description description="Monitorea el estado de las oficinas" />
 
-                <div className="mt-10">
+                <div className="mt-10  overflow-x-scroll">
                     <table className="border-2 w-full self-start">
                         <thead>
-                            <tr className="text-start border-2 bg-slate-200">
-                                <th className="text-start">Oficina</th>
-                                <th className="text-start">Status</th>
-                                <th className="text-start">Luces</th>
-                                <th className="text-start">Temperatura °C</th>
-                                <th className="text-start">Timestamp</th>
+                            <tr className="text-start border-2 bg-slate-200 ">
+                                <th className="text-start pr-8">Oficina</th>
+                                <th className="text-start pr-8">Status</th>
+                                <th className="text-start pr-8">Luces</th>
+                                <th className="text-start pr-8">Temperatura <span className="">°C</span></th>
+                                <th className="text-start pr-8">Timestamp</th>
                             </tr>
                         </thead>
                         <tbody>
                             {offices ? (
                                 offices.map((office, key) => (
                                     <tr key={key} className="hover:bg-zinc-200" onClick={() => handleOpen(key, office.id, office.officeNum)}>
-                                        <td>{office.officeNum}</td>
-                                        <td>{status ?? "ocupado"}</td>
-                                        <td>{luces}</td>
-                                        <td>{temperatura}</td>
-                                        <td>{time}</td>
+                                        <td className="pr-8">{office.officeNum}</td>
+                                        <td className="pr-8">{status ?? "ocupado"}</td>
+                                        <td className="pr-8">{luces}</td>
+                                        <td className="pr-8">{temperatura}</td>
+                                        <td className="pr-8">{time}</td>
                                     </tr>
 
                                 ))

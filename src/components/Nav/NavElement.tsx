@@ -14,23 +14,20 @@ const NavElement: React.FC<NavElementProps> = ({ title, route, onClick, selected
         <div className="z-50 flex flex-row gap-2 items-center text-white" onClick={() => onClick(route)}>
             {/* {title} */}
 
-            <h1 className={clsx(selected && "underline underline-offset-8")} >
-                    {title}
-            </h1>
 
-            {/* {mobile ? (
-                <h1 className={clsx(selected ? "text-white underline hover:text-emerald-500" : "text-white hover:text-emerald-600",
+
+            {mobile ? (
+                <h1 className={clsx(selected ? "text-white underline" : "text-white ",
                     "text-lg hover:underline")} >
                     {title}
                 </h1>
             ) : (
 
-                <h1 className={clsx(selected ? "text-emerald-400 hover:text-emerald-500" : "text-emerald-600 hover:text-emerald-600",
-                    "text-lg hover:underline")} >
+                <h1 className={clsx(selected && "underline underline-offset-8")} >
                     {title}
                 </h1>
             )
-            } */}
+            }
 
         </div>
     )

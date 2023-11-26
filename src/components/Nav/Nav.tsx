@@ -1,4 +1,5 @@
 import NavDesktop from "./NavDesktop"
+import NavMobile from "./NavMobile";
 
 
 const Nav = () => {
@@ -11,7 +12,7 @@ const Nav = () => {
     return (
         <div className="z-50 fixed h-min top-0 w-full font-sans">
             <NavDesktop routes={routes} />
-            {/* <NavMobile routes={routes} /> */}
+            <NavMobile routes={routes} />
         </div>
     )
 }
