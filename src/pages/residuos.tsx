@@ -77,7 +77,7 @@ export default function Residuos() {
           </div>
         </div>
 
-        <div className="pl-10 mb-6">
+        <div className="px-10 mb-6">
           <Title title="Localizaciones" />
           <Description description="Puedes dejar tu residuo en los siguientes lugares" />
         </div>
