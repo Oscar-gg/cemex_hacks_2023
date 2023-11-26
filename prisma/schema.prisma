@@ -13,14 +13,14 @@ model Account {
   type                     String?
   provider                 String?
   providerAccountId        String?
-  refresh_token            String? // @db.Text
-  access_token             String? // @db.Text
+  refresh_token            String?
+  access_token             String?
   expires_at               Int?
   ext_expires_in           Int?
   refresh_token_expires_in Int?
   token_type               String?
   scope                    String?
-  id_token                 String? // @db.Text
+  id_token                 String?
   session_state            String?
   user                     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -43,9 +43,9 @@ model User {
   image         String?
   role          String?
   accounts      Account[]
-  sessions      Session[]
   RFID          RFID[]
   Reservation   Reservation[]
+  sessions      Session[]
 }
 
 model VerificationToken {
@@ -56,21 +56,13 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// model Admin {
-//   email String @unique
-// }
-
-// model OrganizationMember {
-//   email String @unique
-// }
-
 model Reservation {
   id       String @id @default(cuid())
-  time     String
   userId   String
   officeId String
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  time     String
   office   Office @relation(fields: [officeId], references: [id], onDelete: Cascade)
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Office {
@@ -90,9 +82,9 @@ model Device {
 model RFID {
   id         String   @id
   userId     String?
-  user       User?    @relation(fields: [userId], references: [id])
   detections Int      @default(0)
   updatedAt  DateTime @default(now()) @updatedAt
+  user       User?    @relation(fields: [userId], references: [id])
 }
 
 model Light {

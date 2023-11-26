@@ -1,6 +1,8 @@
 import NavBar from "~/components/NavBar";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import Nav from "~/components/Nav/Nav";
+import Title from "~/components/general/title";
 
 export default function Dashboard() {
     const { data: sessionData, status } = useSession();
@@ -12,21 +14,21 @@ export default function Dashboard() {
 
     return (
         <>
-        <NavBar />
-        <div className="container min-w-full min-h-screen flex flex-col bg-gradient-radial from-sky-100/90 to-white">
+        <Nav />
+        <div className="container min-w-full min-h-screen flex flex-col bg-gradient-radial from-sky-100/90 to-white pt-16">
+            <div className="pl-10 pt-8">
+            <Title title="Dashboard" />
+            </div>
             <div className="flex flex-row pt-14 px-20">
                 <div className="w-2 bg-stone-700 rounded-sm"></div>
                 <p className="text-lg font-semibold text-slate-700 px-6 text-left">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Aliquam esse ducimus, voluptatum omnis illo expedita facilis adipisci
-                    dignissimos enim recusandae architecto veritatis commodi quibusdam,
-                    nihil delectus, quam reprehenderit. Ea, magni!
+                Smart Resource Manager  es un Building Management System (BMS) que ofrece una revolución en la forma en que las empresas gestionan sus recursos.
                 </p>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-center min-w-full gap-10 px-10 py-20">
-                <Card text="Monitoreo de Energía"/>
-                <Card text="Rutas Inteligentes"/>
-                <Card text="Identificación de Residuos"/>
+                <Card text="Monitoreo de Energía" route="/monitoreo"/>
+                <Card text="Rutas Inteligentes" route="/movilidad" />
+                <Card text="Identificación de Residuos" route="/residuos" />
             </div>
         </div>
         </>
@@ -35,12 +37,19 @@ export default function Dashboard() {
 
 interface cardprops {
     text: string,
+    route: string
 }
 
-function Card({ text }: cardprops) {
+function Card({ text, route }: cardprops) {
+    const router = useRouter();
+    const onClick = () => {
+        router.push(route)
+        // router.replace("","/monitoreo")
+        console.log("refresh")
+    }
     return (
         <>
-        <div className="bg-sky-600/70 px-4 py-4 h-40 w-80 flex flex-row items-center justify-center rounded-xl shadow-lg hover:shadow-xl hover:bg-sky-700/70">
+        <div onClick={onClick} className="bg-sky-600/70 px-4 py-4 h-40 w-80 flex flex-row items-center justify-center rounded-xl shadow-lg hover:shadow-xl hover:bg-sky-700/70">
             <h2 className="text-white font-bold px-2 py-2 text-xl">{text}</h2>
         </div>
         </>

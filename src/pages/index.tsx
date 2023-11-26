@@ -36,7 +36,7 @@ export default function Home() {
         <meta name="description" content="no se que va aqui sos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+      {/* <NavBar /> */}
       <main className="px-50 bg-gradient-radial flex min-h-screen flex-col items-center justify-center relative">
         <div className="absolute inset-0 bg-cover bg-center z-[-1]">
           <img
@@ -46,8 +46,8 @@ export default function Home() {
           />
         </div>
         <img className="h-16 w-16" src={Image.src} />
-        <h1 className="py-2 pt-12 text-5xl font-bold tracking-wide text-sky-950 underline decoration-sky-300 decoration-4 underline-offset-8 sm:text-8xl">
-          CEMEX
+        <h1 className="py-2 pt-12 text-4xl font-bold tracking-wide text-center self-center text-sky-950 underline decoration-sky-300 decoration-4 underline-offset-8 sm:text-7xl">
+          SMART RESOURCE <br /> MANAGER
         </h1>
         <p className="py-4 text-xl text-stone-900">
           Mantén un ambiente eficiente
@@ -55,7 +55,7 @@ export default function Home() {
         <div className="container flex flex-col items-center justify-center px-4 py-8 ">
           {sessionData ? <LogoutButton /> : <LoginButton />}
         </div>
-        <button
+        {/* <button
           onClick={() => {
             mutation.mutate({
               points: [
@@ -67,7 +67,7 @@ export default function Home() {
           className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
         >
           Test sending endpoints
-        </button>
+        </button> */}
       </main>
     </>
   );

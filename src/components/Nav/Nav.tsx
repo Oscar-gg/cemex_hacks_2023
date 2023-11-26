@@ -3,7 +3,7 @@ import NavDesktop from "./NavDesktop"
 
 const Nav = () => {
     const routes = [
-        { title: "Main", route: "main", path: "/main" },
+        { title: "Dashboard", route: "dashboard", path: "/dashboard" },
         { title: "Monitoreo", route: "monitoreo", path: "/monitoreo" },
         { title: "Movilidad", route: "movilidad", path: "/movilidad" },
         { title: "Residuos", route: "residuos", path: "/residuos" },

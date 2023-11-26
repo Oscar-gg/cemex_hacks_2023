@@ -70,7 +70,7 @@ const Devices = () => {
   return (
     <div className={cardWrappertw}>
       {isLoading ? (
-        <p>Loading...</p>
+        <p>sss...</p>
       ) : deviceIds && deviceIds.length > 0 ? (
         deviceIds.map((deviceId) => (
           <DeviceCard key={deviceId.connectionId} id={deviceId.connectionId} />

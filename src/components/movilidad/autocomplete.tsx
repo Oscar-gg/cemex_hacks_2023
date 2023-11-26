@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 
 import type { MapLocation } from "~/zod/types";
+import { useRouter } from "next/navigation";
+import Nav from "../Nav/Nav";
+import { LoadingScreen } from "../general/LoadingScreen";
 
 const GooglePlacesAutocomplete = ({
   places,
@@ -14,6 +17,9 @@ const GooglePlacesAutocomplete = ({
     googleMapsApiKey: "AIzaSyApYvTkH-7FbW4paDE7mUXqNxT56srw6ec",
     libraries: ["places"],
   });
+
+  const router = useRouter();
+ 
 
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -72,7 +78,10 @@ const GooglePlacesAutocomplete = ({
   }, [isLoaded, loadError]);
 
   if (loadError) return <div>Error loading Google Maps</div>;
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <div>
+    <LoadingScreen />
+    </div>;
+
 
   return <div ref={containerRef} id="google-places-autocomplete" />;
 };

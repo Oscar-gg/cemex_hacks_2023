@@ -36,7 +36,7 @@ export const DeviceCard = ({ id }: { id: string }) => {
   if (isLoading) {
     return (
       <div className="max-w-sm rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
-        <div>Loading...</div>
+        <div>aaaaa...</div>
       </div>
     );
   } else if (!deviceData) {

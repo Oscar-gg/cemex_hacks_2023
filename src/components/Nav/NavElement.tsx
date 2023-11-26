@@ -11,7 +11,7 @@ interface NavElementProps {
 const NavElement: React.FC<NavElementProps> = ({ title, route, onClick, selected, mobile }) => {
 
     return (
-        <div className="z-50 flex flex-row gap-2 items-center text-sky-500" onClick={() => onClick(route)}>
+        <div className="z-50 flex flex-row gap-2 items-center text-white" onClick={() => onClick(route)}>
             {/* {title} */}
 
             <h1 className={clsx(selected && "underline underline-offset-8")} >

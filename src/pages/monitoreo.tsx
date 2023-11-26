@@ -45,7 +45,7 @@ const Monitoreo = () => {
                 <AddOffice />
             </Modal>
             <Nav />
-            <div className="w-full h-screen bg-slate-50 p-8 z-20 pt-16">
+            <div className="w-full h-screen bg-slate-50 p-8 z-20 bg-gradient-radial from-sky-100/90 to-white pt-24">
                 <Title title="Monitoreo de Sensores" />
 
                 <div className="mt-10">
