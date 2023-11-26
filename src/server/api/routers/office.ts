@@ -21,7 +21,7 @@ export const officeRouter = createTRPCRouter({
             })
 
             const final = []
-            for (let office of offices) {
+            for (const office of offices) {
                 const temp = await ctx.db.temperature.findFirst({
 
                     orderBy: {
