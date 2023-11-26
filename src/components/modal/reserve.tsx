@@ -33,7 +33,7 @@ export const Reserve: React.FC<ReserveProps> = ({ id, num }) => {
             toast.error("No disponible")
         } else {
             addReservation.mutate({ officeId: id, time: horario?.hour ?? "" });
-            toast.success("Log deleted successfully");
+            toast.success("Oficina reservada");
         }
         setKeyH(-1);
     }

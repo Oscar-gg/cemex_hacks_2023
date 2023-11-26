@@ -14,6 +14,10 @@ export const officeRouter = createTRPCRouter({
 
     getOffices: protectedProcedure
         .query(async ({ctx}) => {
-            return ctx.db.office.findMany()
+            return ctx.db.office.findMany({
+                orderBy: {
+                    officeNum: "asc"
+                }
+            })
         })
 })
