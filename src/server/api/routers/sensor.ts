@@ -14,6 +14,7 @@ export const sensorRouter = createTRPCRouter({
       await ctx.db.light.create({
         data: {
           value: input.data,
+          officeId: "clpf1jz5n00016tk869mrl293",
         },
       });
     }),
@@ -23,6 +24,7 @@ export const sensorRouter = createTRPCRouter({
       await ctx.db.temperature.create({
         data: {
           value: input.data,
+          officeId: "clpf1jz5n00016tk869mrl293",
         },
       });
     }),
