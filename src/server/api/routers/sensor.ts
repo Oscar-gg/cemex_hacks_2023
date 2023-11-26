@@ -43,4 +43,7 @@ export const sensorRouter = createTRPCRouter({
         },
       });
     }),
+  addMovement: publicProcedure.mutation(async ({ input, ctx }) => {
+    await ctx.db.movement.create({ data: {} });
+  }),
 });
