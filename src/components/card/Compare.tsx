@@ -23,7 +23,7 @@ export const CompareCard = ({
         <p>No hay datos por desplegar</p>
       ) : (
         data.map((week, index) => (
-          <div className="my-2 p-2" id={week.lightLevel + " " + index}>
+          <div className="my-2 p-2" key={week.lightLevel + " " + index}>
             <p>Semana {index + 1}: </p>
             <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
               Temperatura promedio: {week.temperature} °C

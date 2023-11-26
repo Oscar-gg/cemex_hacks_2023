@@ -91,14 +91,14 @@ model Light {
   id        String   @id @default(cuid())
   value     Int
   timeStamp DateTime @default(now())
-  officeId  String?
+  officeId  String?  @default("clpf1jz5n00016tk869mrl293")
 }
 
 model Temperature {
   id        String   @id @default(cuid())
   value     Int
   timeStamp DateTime @default(now())
-  officeId  String?
+  officeId  String?  @default("clpf1jz5n00016tk869mrl293")
 }
 
 model Admin {

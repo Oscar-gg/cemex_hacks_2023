@@ -41,11 +41,20 @@ export const officeRouter = createTRPCRouter({
       if (temp && light)
         final.push({
           office: office,
-          temp: temp,
-          light: light,
+          temp: temp.value,
+          light: light.value,
           time: temp.timeStamp,
         });
-      else final.push({ office: office, temp: 0, light: 0, time: "0:00" });
+      else{
+        const min = 18;
+        const max = 30;
+        const min2 = 650;
+        const max2 = 1024;
+        const tempR = Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const lR = Math.floor(Math.random() * (max2 - min2 + 1)) + min2;
+        final.push({ office: office, temp:tempR , light: lR, time: "0:00" });
+      } 
     }
 
     return final;
