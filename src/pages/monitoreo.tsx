@@ -8,12 +8,14 @@ import { useState } from "react";
 import { Modal } from "~/components/modal/modal";
 import { useSession } from "next-auth/react";
 import Description from "~/components/general/description";
+import { useRouter } from "next/navigation";
 
 const Monitoreo = () => {
 
     const offices = api.office.getOffices.useQuery().data;
     const session = useSession();
 
+    const router = useRouter();
     // const admin = session.data?.user.role == "admin";
     const admin = true;
 
@@ -31,6 +33,10 @@ const Monitoreo = () => {
         setNum(num)
         // setStatus(Data[key]?.status ?? "Desocupado")
         setOpen(!isOpen);
+    }
+
+    const handleCompare = () => {
+        router.push("/comparativa")
     }
 
 
@@ -85,12 +91,15 @@ const Monitoreo = () => {
 
                 {admin && (
                     <div className="flex gap-3">
-                        <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
+                        <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 hover:bg-sky-300 py-1 px-3 rounded-full text-white">
                             Add office
                         </button>
-                        <button onClick={() => setOpenAdd(!isOpenAdd)} className="mt-4 bg-sky-400 py-1 px-3 rounded-full text-white">
+                        <a target="_blank" href="/comparativa" rel="noopener noreferrer">
+                        <button className="mt-4 bg-sky-400 hover:bg-sky-300 py-1 px-3 rounded-full text-white">
                             Ver comparativa
                         </button>
+                        </a>
+                        
 
                     </div>
                 )}

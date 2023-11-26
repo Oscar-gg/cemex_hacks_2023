@@ -65,7 +65,7 @@ export const RouteCard = ({
         Rutas:
       </h5>
       {routeData.solution_array.map((item, index) => (
-        <div>
+        <div className="dark:text-white">
           <h6>Ruta {index + 1}:</h6>
           {item.map((pos, index) => {
             console.log("pos:", pos);

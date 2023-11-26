@@ -23,7 +23,7 @@ export const officeRouter = createTRPCRouter({
             const final = []
             for (let office of offices) {
                 const temp = await ctx.db.temperature.findFirst({
-                    
+
                     orderBy: {
                         timeStamp: "desc"
                     },
@@ -35,7 +35,7 @@ export const officeRouter = createTRPCRouter({
                 })
 
                 const light = await ctx.db.light.findFirst({
-                    
+
                     orderBy: {
                         timeStamp: "desc"
                     },
@@ -46,10 +46,11 @@ export const officeRouter = createTRPCRouter({
 
                 })
                 if (temp && light)
-                    final.push({ office: office, temp: temp, light: light, time: temp.timeStamp })
-                else    
+                    final.push({ office: office, temp: temp.value, light: light.value, time: temp.timeStamp })
+
+                else
                     final.push({ office: office, temp: 0, light: 0, time: "0:00" })
-                
+
             }
 
             return final;

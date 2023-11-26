@@ -1,8 +1,8 @@
 
 
-const Description = ({description} : {description:string}) => {
+const Description = ({ description }: { description: string }) => {
     return (
-        <h2>
+        <h2 className="text-gray-600">
             {description}
         </h2>
     )
