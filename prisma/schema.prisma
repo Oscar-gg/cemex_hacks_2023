@@ -90,15 +90,15 @@ model RFID {
 model Light {
   id        String   @id @default(cuid())
   value     Int
-  officeId  String?
   timeStamp DateTime @default(now())
+  officeId  String?
 }
 
 model Temperature {
   id        String   @id @default(cuid())
   value     Int
-  officeId  String?
   timeStamp DateTime @default(now())
+  officeId  String?
 }
 
 model Admin {
@@ -110,7 +110,7 @@ model OrganizationMember {
 }
 
 model Movement {
-  id       String   @id @default(cuid())
-  officeId String?
+  id        String   @id @default(cuid())
   timeStamp DateTime @default(now())
+  officeId  String?
 }
