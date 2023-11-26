@@ -39,6 +39,8 @@ export default async function handler(
       await sensorCaller.addRFID({
         data: rfidDetection,
       });
+    } else if (type === "movement") {
+      await sensorCaller.addMovement();
     } else {
       throw new Error("Unknown data type");
     }

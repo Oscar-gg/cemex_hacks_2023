@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "cockroachdb"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -113,4 +113,9 @@ model Admin {
 
 model OrganizationMember {
   email String @unique
+}
+
+model Movement {
+  id        String   @id @default(cuid())
+  timeStamp DateTime @default(now())
 }
