@@ -15,10 +15,22 @@ export const CommandObject = z.object({
 });
 
 // Must match with nodeMCU
-export const DeviceDataType = z.enum(["temperature", "RFID", "light", "movement"]);
+export const DeviceDataType = z.enum([
+  "temperature",
+  "RFID",
+  "light",
+  "movement",
+]);
 
 export interface MapLocation {
   lat: number;
   lng: number;
   name: string;
 }
+
+export const PythonApi = z.object({
+  solution_array: z.array(z.array(z.array(z.number()))),
+  max_route_distance: z.number(),
+  litros_total: z.number(),
+  costo_total: z.number(),
+});
