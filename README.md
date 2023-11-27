@@ -1,28 +1,64 @@
-# Create T3 App
+# Smart Resource Manager
+Aplicación web para monitorear gastos de energía, obtener rutas optimizadas y clasificar basura.
+Projecto para CEMEX Hack 2023.
+<br/>
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+# Features
+### Monitorieo
+Monitoreo de sensores en distintas oficinas. Con la opción de reservar en distintos horarios.
 
-## What's next? How do I make an app with this?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### Movilidad
+Planeación de rutas usando algoritmos de optimización y desplegados mediante una API de Google Maps.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+### Residuos
+Demostración de clasificación de residuos e indicación de los lugares para depositarlo.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
+<br/>
+
+# Tools
+Built with:
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [tRPC](https://trpc.io)
+- [Prisma](https://www.prisma.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [tRPC](https://trpc.io)
+- [AWS WebSocket API](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api.html)
+  
+Deployed with [Vercel](https://vercel.com/)
+<br/>
 
-## Learn More
+# Structure
+```bash
+├─ prisma
+│   └─ schema.prisma
+│
+├─ public
+│
+└─ src/app
+    │
+    ├─ (pages)
+    │   ├─ dashboard
+    │   ├─ monitoreo
+    │   ├─ movilidad
+    │   └─ residuos
+    │
+    ├─ components
+    │
+    ├─ api
+    │   └─ routes
+    │    
+    └─ utils
+        ├─ actions
+        ├─ context
+        ├─ hooks
+        └─ libs
+```
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+<br/>
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+# Check it out
+https://movies-and-series-tracker.vercel.app/
