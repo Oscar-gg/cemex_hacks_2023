@@ -60,5 +60,18 @@ Deployed with [Vercel](https://vercel.com/)
 
 <br/>
 
+# Development Team
+
+| Name | Github |
+| --- | --- | 
+| Oscar Arreola | [@Oscar-gg](https://github.com/Oscar-gg) |
+| Oscar Cárdenas | | 
+| Jocelyn Velarde | | 
+| Marian | | 
+| Juan | | 
+| Alejandra Coeto | [@Ale-Coeto](https://github.com/Ale-Coeto) | 
+
+<br/>
+
 # Check it out
-https://movies-and-series-tracker.vercel.app/
+https://cemex-hacks-2023.vercel.app/
