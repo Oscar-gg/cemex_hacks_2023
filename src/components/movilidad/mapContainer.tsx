@@ -19,7 +19,7 @@ const MapContainer = ({
   useEffect(() => {
     if (!document.getElementById("map")) {
       const loader = new Loader({
-        apiKey: "AIzaSyApYvTkH-7FbW4paDE7mUXqNxT56srw6ec",
+        apiKey: "key",
         version: "weekly",
       });
 
