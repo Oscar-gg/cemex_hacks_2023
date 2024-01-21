@@ -14,7 +14,7 @@ const GooglePlacesAutocomplete = ({
   places: MapLocation[] | undefined;
 }) => {
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyApYvTkH-7FbW4paDE7mUXqNxT56srw6ec",
+    googleMapsApiKey: "key",
     libraries: ["places"],
   });
 
